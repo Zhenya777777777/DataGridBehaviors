@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="TestClient.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bhvr="clr-namespace:CustomDataGridBehaviors;assembly=CustomDataGridBehaviors"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    mc:Ignorable="d"
+    Height="300" Width="300">
+
+    <StackPanel>
+        <DataGrid
+            ItemsSource="{Binding Tags}"
+            SelectionUnit="FullRow"
+            AutoGenerateColumns="False"
+            CanUserAddRows="False" CanUserDeleteRows="False"
+            CanUserSortColumns="False"
+            CanUserReorderColumns="False" CanUserResizeColumns="False"
+            IsSynchronizedWithCurrentItem="True"
+            Margin="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tag" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
+            </DataGrid.Columns>
+            <i:Interaction.Behaviors>
+                <bhvr:DataGridPerCellCommitBehavior />
+            </i:Interaction.Behaviors>
+        </DataGrid>
+
+        <UniformGrid Rows="2" Columns="2"
+                     DataContext="{Binding Tags}"
+                     Margin="10">
+            <TextBlock Text="Tag" />
+            <TextBox Text="{Binding Name}" IsReadOnly="True" Grid.Column="1" />
+            <TextBlock Text="Score"  Grid.Row="1"/>
+            <TextBox Text="{Binding Score}" IsReadOnly="True" Grid.Row="1" Grid.Column="1" />
+        </UniformGrid>
+    </StackPanel>
+</UserControl>
