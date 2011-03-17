@@ -3,7 +3,7 @@ using System.Windows.Interactivity;
 
 namespace CustomDataGridBehaviors
 {
-    public class DataGridPerCellCommitBehavior : Behavior<DataGrid>
+    public class PerCellCommitBehavior : Behavior<DataGrid>
     {
         private static bool _manualEditCommit;
 

@@ -7,7 +7,7 @@
     xmlns:bhvr="clr-namespace:CustomDataGridBehaviors;assembly=CustomDataGridBehaviors"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     mc:Ignorable="d"
-    Height="300" Width="300">
+    Width="300">
 
     <StackPanel>
         <DataGrid
@@ -20,11 +20,15 @@
             IsSynchronizedWithCurrentItem="True"
             Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tag" Binding="{Binding Name}" />
+                <DataGridComboBoxColumn
+                    Header="Tag"
+                    ItemsSource="{Binding (FrameworkElement.DataContext).AllTags, RelativeSource={RelativeSource Self}}"
+                    SelectedValueBinding="{Binding Name}" />
                 <DataGridTextColumn Header="Score" Binding="{Binding Score}" />
             </DataGrid.Columns>
             <i:Interaction.Behaviors>
-                <bhvr:DataGridPerCellCommitBehavior />
+                <bhvr:PerCellCommitBehavior />
+                <bhvr:PushDataContextToColumnsBehavior />
             </i:Interaction.Behaviors>
         </DataGrid>
 
